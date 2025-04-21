@@ -1,43 +1,36 @@
-import { getConvexUser } from "@/utils/query";
-import { currentUser } from "@clerk/nextjs/server";
-import { Blocks, Code2, Sparkles } from "lucide-react";
-import Link from "next/link";
-import ThemeSelector from "./theme-selector";
-import LanguageSelector from "./language-selector";
-import HeaderProfileButton from "./header-profile-button";
+import { getConvexUser } from '@/utils/query';
+import { currentUser } from '@clerk/nextjs/server';
+import { Blocks, Code2, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import ThemeSelector from './theme-selector';
+import LanguageSelector from './language-selector';
+import HeaderProfileButton from './header-profile-button';
+import RunButton from './RunButton';
+import { SignedIn } from '@clerk/nextjs';
 
 const Header = async () => {
   const user = await currentUser();
-  const convexUser = await getConvexUser(user?.id || "");
+  const convexUser = await getConvexUser(user?.id || '');
 
   return (
     <div className="relative z-10">
-      <div
-        className="flex items-center lg:justify-between justify-center 
-        bg-[#0a0a0f]/80 backdrop-blur-xl p-6 mb-4 rounded-lg"
-      >
-        <div className="hidden lg:flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-3 group relative">
+      <div className="mb-4 flex items-center justify-center rounded-lg bg-[#0a0a0f]/80 p-6 backdrop-blur-xl lg:justify-between">
+        <div className="hidden items-center gap-8 lg:flex">
+          <Link href="/" className="group relative flex items-center gap-3">
             {/* Logo hover effect */}
 
-            <div
-              className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg opacity-0 
-                group-hover:opacity-100 transition-all duration-500 blur-xl"
-            />
+            <div className="absolute -inset-2 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 blur-xl transition-all duration-500 group-hover:opacity-100" />
 
             {/* Logo */}
-            <div
-              className="relative bg-gradient-to-br from-[#1a1a2e] to-[#0a0a0f] p-2 rounded-xl ring-1
-              ring-white/10 group-hover:ring-white/20 transition-all"
-            >
-              <Blocks className="size-6 text-blue-400 transform -rotate-6 group-hover:rotate-0 transition-transform duration-500" />
+            <div className="relative rounded-xl bg-gradient-to-br from-[#1a1a2e] to-[#0a0a0f] p-2 ring-1 ring-white/10 transition-all group-hover:ring-white/20">
+              <Blocks className="size-6 -rotate-6 transform text-blue-400 transition-transform duration-500 group-hover:rotate-0" />
             </div>
 
             <div className="flex flex-col">
-              <span className="block text-lg font-semibold bg-gradient-to-r from-blue-400 via-blue-300 to-purple-400 text-transparent bg-clip-text">
-                CodeCraft
+              <span className="block bg-gradient-to-r from-blue-400 via-blue-300 to-purple-400 bg-clip-text text-lg font-semibold text-transparent">
+                H!-Editor
               </span>
-              <span className="block text-xs text-blue-400/60 font-medium">
+              <span className="block text-xs font-medium text-blue-400/60">
                 Interactive Code Editor
               </span>
             </div>
@@ -47,18 +40,11 @@ const Header = async () => {
           <nav className="flex items-center space-x-1">
             <Link
               href="/snippets"
-              className="relative group flex items-center gap-2 px-4 py-1.5 rounded-lg text-gray-300 bg-gray-800/50 
-                hover:bg-blue-500/10 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 shadow-lg overflow-hidden"
+              className="group relative flex items-center gap-2 overflow-hidden rounded-lg border border-gray-800 bg-gray-800/50 px-4 py-1.5 text-gray-300 shadow-lg transition-all duration-300 hover:border-blue-500/50 hover:bg-blue-500/10"
             >
-              <div
-                className="absolute inset-0 bg-gradient-to-r from-blue-500/10 
-                to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"
-              />
-              <Code2 className="w-4 h-4 relative z-10 group-hover:rotate-3 transition-transform" />
-              <span
-                className="text-sm font-medium relative z-10 group-hover:text-white
-                 transition-colors"
-              >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 transition-opacity group-hover:opacity-100" />
+              <Code2 className="relative z-10 h-4 w-4 transition-transform group-hover:rotate-3" />
+              <span className="relative z-10 text-sm font-medium transition-colors group-hover:text-white">
                 Snippets
               </span>
             </Link>
@@ -74,22 +60,20 @@ const Header = async () => {
           {!convexUser?.isPro && (
             <Link
               href="/pricing"
-              className="flex items-center gap-2 px-4 py-1.5 rounded-lg border border-amber-500/20 hover:border-amber-500/40 bg-gradient-to-r from-amber-500/10 
-                to-orange-500/10 hover:from-amber-500/20 hover:to-orange-500/20 
-                transition-all duration-300"
+              className="flex items-center gap-2 rounded-lg border border-amber-500/20 bg-gradient-to-r from-amber-500/10 to-orange-500/10 px-4 py-1.5 transition-all duration-300 hover:border-amber-500/40 hover:from-amber-500/20 hover:to-orange-500/20"
             >
-              <Sparkles className="w-4 h-4 text-amber-400 hover:text-amber-300" />
+              <Sparkles className="h-4 w-4 text-amber-400 hover:text-amber-300" />
               <span className="text-sm font-medium text-amber-400/90 hover:text-amber-300">
                 Pro
               </span>
             </Link>
           )}
 
-          {/* <SignedIn>
+          <SignedIn>
             <RunButton />
-          </SignedIn> */}
+          </SignedIn>
 
-          <div className="pl-3 border-l border-gray-800">
+          <div className="border-l border-gray-800 pl-3">
             <HeaderProfileButton />
           </div>
         </div>
