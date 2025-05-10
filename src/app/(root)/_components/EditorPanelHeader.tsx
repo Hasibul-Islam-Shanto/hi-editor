@@ -4,7 +4,11 @@ import { RotateCcwIcon, ShareIcon, TypeIcon } from 'lucide-react';
 import { useCodeEditorStore } from '@/store/useCodeEditorStore';
 import { LANGUAGE_CONFIG } from '../_constant';
 
-const EditorPanelHeader = () => {
+const EditorPanelHeader = ({
+  setIsShareDialogOpen,
+}: {
+  setIsShareDialogOpen: (open: boolean) => void;
+}) => {
   const { language, fontSize, editor, setFontSize } = useCodeEditorStore();
 
   const handleRefresh = () => {
@@ -69,7 +73,7 @@ const EditorPanelHeader = () => {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            // onClick={() => setIsShareDialogOpen(true)}
+            onClick={() => setIsShareDialogOpen(true)}
             className="inline-flex items-center gap-2 overflow-hidden rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 opacity-90 transition-opacity hover:opacity-100"
           >
             <ShareIcon className="size-4 text-white" />

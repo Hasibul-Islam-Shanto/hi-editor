@@ -19,9 +19,11 @@
     "convex": "^1.21.0",
     "framer-motion": "^12.6.2",
     "lucide-react": "^0.484.0",
+    "monaco-editor": "^0.52.2",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "svix": "^1.62.0",
     "zustand": "^5.0.3"
   },

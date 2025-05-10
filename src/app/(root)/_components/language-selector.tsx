@@ -16,7 +16,7 @@ const LanguageSelector = ({ hasAccess }: { hasAccess: boolean }) => {
   const currentLanguageObj = LANGUAGE_CONFIG[language];
 
   const handleLanguageSelect = (langId: string) => {
-    if (!hasAccess && langId !== 'javascript') return;
+    if (!hasAccess && langId !== 'javascript' && langId !== 'python') return;
 
     setLanguage(langId);
     setIsOpen(false);
@@ -86,7 +86,10 @@ const LanguageSelector = ({ hasAccess }: { hasAccess: boolean }) => {
 
             <div className="max-h-[280px] overflow-x-hidden overflow-y-auto">
               {Object.values(LANGUAGE_CONFIG).map((lang, index) => {
-                const isLocked = !hasAccess && lang.id !== 'javascript';
+                const isLocked =
+                  !hasAccess &&
+                  lang.id !== 'javascript' &&
+                  lang.id !== 'python';
 
                 return (
                   <motion.div
@@ -101,7 +104,6 @@ const LanguageSelector = ({ hasAccess }: { hasAccess: boolean }) => {
                       onClick={() => handleLanguageSelect(lang.id)}
                       disabled={isLocked}
                     >
-                      {/* decorator */}
                       <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
 
                       <div
@@ -121,7 +123,6 @@ const LanguageSelector = ({ hasAccess }: { hasAccess: boolean }) => {
                         {lang.label}
                       </span>
 
-                      {/* selected language border */}
                       {language === lang.id && (
                         <motion.div
                           className="absolute inset-0 rounded-lg border-2 border-blue-500/30"

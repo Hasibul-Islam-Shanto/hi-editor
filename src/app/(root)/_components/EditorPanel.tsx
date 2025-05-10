@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { EditorPanelSkeleton } from './EditorPanelSkeleton';
 import { useClerk } from '@clerk/nextjs';
 import { useCodeEditorStore } from '@/store/useCodeEditorStore';
@@ -8,10 +8,12 @@ import { Editor } from '@monaco-editor/react';
 import { LANGUAGE_CONFIG } from '../_constant';
 import useMounted from '@/hooks/useMounted';
 import EditorPanelHeader from './EditorPanelHeader';
+import ShareSnippetDialog from './ShareSnippetDialog';
 
 const EditorPanel = () => {
   const clerk = useClerk();
   const isMounted = useMounted();
+  const [isShareDialogOpen, setIsShareDialogOpen] = useState<boolean>(false);
   const { language, theme, fontSize, editor, setFontSize, setEditor } =
     useCodeEditorStore();
 
@@ -42,7 +44,7 @@ const EditorPanel = () => {
     <>
       <div className="relative col-span-2">
         <div className="relative rounded-xl border border-white/[0.05] bg-[#12121a]/90 p-6 backdrop-blur">
-          <EditorPanelHeader />
+          <EditorPanelHeader setIsShareDialogOpen={setIsShareDialogOpen} />
           <div className="group relative overflow-hidden rounded-xl ring-1 ring-white/[0.05]">
             {clerk.loaded && (
               <Editor
@@ -80,6 +82,9 @@ const EditorPanel = () => {
             {!clerk.loaded && <EditorPanelSkeleton />}
           </div>
         </div>
+        {isShareDialogOpen && (
+          <ShareSnippetDialog onClose={() => setIsShareDialogOpen(false)} />
+        )}
       </div>
     </>
   );
