@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   CircleOff,
   Cloud,
@@ -7,26 +7,26 @@ import {
   Moon,
   Palette,
   Sun,
-} from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { THEMES } from "../_constant";
-import { useCodeEditorStore } from "@/store/useCodeEditorStore";
-import useMounted from "@/hooks/useMounted";
+} from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { THEMES } from '../_constant';
+import { useCodeEditorStore } from '@/store/useCodeEditorStore';
+import useMounted from '@/hooks/useMounted';
 
 const THEME_ICONS: Record<string, React.ReactNode> = {
-  "vs-dark": <Moon className="size-4" />,
-  "vs-light": <Sun className="size-4" />,
-  "github-dark": <Github className="size-4" />,
+  'vs-dark': <Moon className="size-4" />,
+  'vs-light': <Sun className="size-4" />,
+  'github-dark': <Github className="size-4" />,
   monokai: <Laptop className="size-4" />,
-  "solarized-dark": <Cloud className="size-4" />,
+  'solarized-dark': <Cloud className="size-4" />,
 };
 
 const ThemeSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme } = useCodeEditorStore();
-  const currentTheme = THEMES.find((t) => t.id === theme);
+  const currentTheme = THEMES.find(t => t.id === theme);
   const isMounted = useMounted();
 
   useEffect(() => {
@@ -38,8 +38,8 @@ const ThemeSelector = () => {
         setIsOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   if (!isMounted) return null;
@@ -50,19 +50,18 @@ const ThemeSelector = () => {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-48 group relative flex items-center gap-2 px-4 py-2.5 bg-[#1e1e2e]/80 hover:bg-[#262637] 
-        rounded-lg transition-all duration-200 border border-gray-800/50 hover:border-gray-700"
+        className="group relative flex w-48 items-center gap-2 rounded-lg border border-gray-800/50 bg-[#1e1e2e]/80 px-4 py-2.5 transition-all duration-200 hover:border-gray-700 hover:bg-[#262637]"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
 
-        <Palette className="w-4 h-4 text-gray-400 group-hover:text-gray-300 transition-colors" />
+        <Palette className="h-4 w-4 text-gray-400 transition-colors group-hover:text-gray-300" />
 
-        <span className="text-gray-300 min-w-[80px] text-left group-hover:text-white transition-colors">
+        <span className="min-w-[80px] text-left text-gray-300 transition-colors group-hover:text-white">
           {currentTheme?.label}
         </span>
 
         <div
-          className="relative w-4 h-4 rounded-full border border-gray-600 group-hover:border-gray-500 transition-colors"
+          className="relative h-4 w-4 rounded-full border border-gray-600 transition-colors group-hover:border-gray-500"
           style={{ background: currentTheme?.color }}
         />
       </motion.button>
@@ -74,11 +73,10 @@ const ThemeSelector = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 mt-2 w-full min-w-[240px] bg-[#1e1e2e]/95 
-            backdrop-blur-xl rounded-xl border border-[#313244] shadow-2xl py-2 z-50"
+            className="absolute top-full left-0 z-50 mt-2 w-full min-w-[240px] rounded-xl border border-[#313244] bg-[#1e1e2e]/95 py-2 shadow-2xl backdrop-blur-xl"
           >
-            <div className="px-2 pb-2 mb-2 border-b border-gray-800/50">
-              <p className="text-xs font-medium text-gray-400 px-2">
+            <div className="mb-2 border-b border-gray-800/50 px-2 pb-2">
+              <p className="px-2 text-xs font-medium text-gray-400">
                 Select Theme
               </p>
             </div>
@@ -89,44 +87,33 @@ const ThemeSelector = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
-                className={`
-                relative group w-full flex items-center gap-3 px-3 py-2.5 hover:bg-[#262637] transition-all duration-200
-                ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "text-gray-300"}
-              `}
+                className={`group relative flex w-full items-center gap-3 px-3 py-2.5 transition-all duration-200 hover:bg-[#262637] ${theme === t.id ? 'bg-blue-500/10 text-blue-400' : 'text-gray-300'} `}
                 onClick={() => {
                   setTheme(t.id);
                   setIsOpen(false);
                 }}
               >
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 
-              group-hover:opacity-100 transition-opacity"
-                />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
 
                 <div
-                  className={`
-                flex items-center justify-center size-8 rounded-lg
-                ${theme === t.id ? "bg-blue-500/10 text-blue-400" : "bg-gray-800/50 text-gray-400"}
-                group-hover:scale-110 transition-all duration-200
-              `}
+                  className={`flex size-8 items-center justify-center rounded-lg ${theme === t.id ? 'bg-blue-500/10 text-blue-400' : 'bg-gray-800/50 text-gray-400'} transition-all duration-200 group-hover:scale-110`}
                 >
-                  {THEME_ICONS[t.id] || <CircleOff className="w-4 h-4" />}
+                  {THEME_ICONS[t.id] || <CircleOff className="h-4 w-4" />}
                 </div>
 
-                <span className="flex-1 text-left group-hover:text-white transition-colors">
+                <span className="flex-1 text-left transition-colors group-hover:text-white">
                   {t.label}
                 </span>
 
                 <div
-                  className="relative size-4 rounded-full border border-gray-600 
-                group-hover:border-gray-500 transition-colors"
+                  className="relative size-4 rounded-full border border-gray-600 transition-colors group-hover:border-gray-500"
                   style={{ background: t.color }}
                 />
 
                 {theme === t.id && (
                   <motion.div
-                    className="absolute inset-0 border-2 border-blue-500/30 rounded-lg"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    className="absolute inset-0 rounded-lg border-2 border-blue-500/30"
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                   />
                 )}
               </motion.button>

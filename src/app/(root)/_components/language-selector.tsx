@@ -43,7 +43,7 @@ const LanguageSelector = ({ hasAccess }: { hasAccess: boolean }) => {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(!isOpen)}
-        className={`group relative flex items-center gap-3 rounded-lg border border-gray-800/50 bg-[#1e1e2e]/80 px-4 py-2.5 transition-all duration-200 hover:border-gray-700 ${!hasAccess && language !== 'javascript' ? 'cursor-not-allowed opacity-50' : ''}`}
+        className={`group relative flex items-center gap-3 rounded-lg border border-gray-800/50 bg-[#1e1e2e]/80 px-4 py-2.5 transition-all duration-200 hover:border-gray-700 ${!hasAccess && language !== 'javascript' && language !== 'python' ? 'cursor-not-allowed opacity-50' : ''}`}
       >
         <div
           className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/5 opacity-0 transition-opacity group-hover:opacity-100"

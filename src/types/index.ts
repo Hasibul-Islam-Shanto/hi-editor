@@ -1,5 +1,5 @@
-import { editor } from "monaco-editor";
-import { Id } from "../../convex/_generated/dataModel";
+import { editor } from 'monaco-editor';
+import { Id } from '../../convex/_generated/dataModel';
 
 export interface Theme {
   id: string;
@@ -56,11 +56,21 @@ export interface CodeEditorState {
 }
 
 export interface Snippet {
-  _id: Id<"snippets">;
+  _id: Id<'snippets'>;
   _creationTime: number;
   userId: string;
   language: string;
   code: string;
   title: string;
   userName: string;
+}
+
+export interface IExecution {
+  _id: Id<'codeExecutions'>;
+  _creationTime: number;
+  output?: string | undefined;
+  error?: string | undefined;
+  userId: string;
+  language: string;
+  code: string;
 }
