@@ -1,13 +1,13 @@
-import { Blocks } from "lucide-react";
-import Link from "next/link";
-import React from "react";
+import { Blocks } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="relative border-t border-gray-800/50 mt-auto">
+    <footer className="relative mt-auto border-t border-gray-800/50">
       <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gray-900 to-transparent" />
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="mx-auto max-w-7xl px-4 py-8">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="flex items-center gap-2 text-gray-400">
             <Blocks className="size-5" />
             <span>Built for developers, by developers</span>
@@ -15,19 +15,19 @@ const Footer = () => {
           <div className="flex items-center gap-6">
             <Link
               href="/support"
-              className="text-gray-400 hover:text-gray-300 transition-colors"
+              className="text-gray-400 transition-colors hover:text-gray-300"
             >
               Support
             </Link>
             <Link
               href="/privacy"
-              className="text-gray-400 hover:text-gray-300 transition-colors"
+              className="text-gray-400 transition-colors hover:text-gray-300"
             >
               Privacy
             </Link>
             <Link
               href="/terms"
-              className="text-gray-400 hover:text-gray-300 transition-colors"
+              className="text-gray-400 transition-colors hover:text-gray-300"
             >
               Terms
             </Link>

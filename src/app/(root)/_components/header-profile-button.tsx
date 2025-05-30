@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import LoginButton from "@/components/login-button";
-import { SignedOut, UserButton } from "@clerk/nextjs";
-import { User } from "lucide-react";
+import LoginButton from '@/components/login-button';
+import { SignedOut, UserButton } from '@clerk/nextjs';
+import { User } from 'lucide-react';
 
 const HeaderProfileButton = () => {
   return (

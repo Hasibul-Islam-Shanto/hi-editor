@@ -26,7 +26,8 @@ const EditorPanel = () => {
   useEffect(() => {
     const savedCode = localStorage.getItem(`editor-code-${language}`);
     const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode;
-    if (editor && newCode) {
+    console.log('🚀 ~ useEffect ~ savedCode:', savedCode);
+    if (editor) {
       editor.setValue(newCode);
     }
   }, [editor, language]);
